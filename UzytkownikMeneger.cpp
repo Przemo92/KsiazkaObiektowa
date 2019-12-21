@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 void UzytkownikMeneger::rejestracjaUzytkownika()
 {
      Uzytkownik uzytkownik = podajDaneNowegoUzytkownika();

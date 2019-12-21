@@ -2,10 +2,6 @@
 
 using namespace std;
 
-KsiazkaAdresowa::KsiazkaAdresowa()
-{
-    uzytkownikMeneger.wczytajUzytkownikowZPliku();
-}
 void KsiazkaAdresowa::rejestracjaUzytkownika()
 {
     uzytkownikMeneger.rejestracjaUzytkownika();

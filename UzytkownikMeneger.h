@@ -20,6 +20,7 @@ class UzytkownikMeneger
     PlikZUzytkownikami plikZUzytkownikami;
 
   public:
+      UzytkownikMeneger(string nazwaPlikuZUzytkownikami) :plikZUzytkownikami(nazwaPlikuZUzytkownikami){} ;
       void rejestracjaUzytkownika();
       void wypiszWszystkichUzytkownikow();
       void wczytajUzytkownikowZPliku();
