@@ -1,3 +1,6 @@
+#ifndef UZYTKOWNIK_H
+#define UZYTKOWNIK_H
+
 #include <iostream>
 
 using namespace std;
@@ -16,3 +19,4 @@ public://ustawienie getterow i setterow, bo atrubuty sa teraz prywatne
     string pobierzLogin();
     string pobierzHaslo();
 };
+#endif
