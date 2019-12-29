@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>30</x>
+      <y>20</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>KsiazkaAdresowa
+
+--
+-UzytkownikMeneger : uzytkownikMeneger
+--
+KsiazkaAdresowa()
++rejestracjaUzytkownika() : void
++wypiszWszystkichUzytkownikow() : void
++logowanieUzytkownika () : void
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>560</y>
+      <w>170</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>Uzytkownik
+--
+-id : Integer
+-login : String 
+-haslo : String
+--
++ustawId() : void
++ustawLogin() : void
++ustawHaslo() : void
++pobierzId() : Integer
++pobierzLogin() : String
++pobierzHaslo() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>10</x>
+      <y>220</y>
+      <w>390</w>
+      <h>420</h>
+    </coordinates>
+    <panel_attributes>UzytkownikMeneger
+--
+-MetodyPomocnicze : metodyPomocnicze
+-PlikZUzytkownikami : plikZUzytkownikami
+-idZalogowanegoUzytkownika : Intiger
+-wybor : Char
+-uzytkownicy : vector &lt;Uzytkownik&gt;
+-adresaci : vector &lt;Adresat&gt;
+--
++rejestracjaUzytkownika() : void
++logowanieUzytkownika ) : Integer
++wybierzOpcjeZMenuUzytkownika() : void
++wypiszWszystkichUzytkownikow() : void
++wczytajUzytkownikowZPliku(): void
++ustawIdZalogowanego() : void
++pobierzIdZalogowanego() : Integer
++ustawNowyWybor() : void
++wykonajOpcjeZMenuUzytkownika() : void
++wczytajAdresatowZalogowanegoUzytkownikaZPliku() : void
++dodajAdresata() : Integer
++podajDaneNowegoAdresata() : Adresat
++wyswietlWszystkichAdresatow() : void
++wyswietlDaneAdresata() : void
++zmianaHaslaZalogowanegoUzytkownika() : void
++podajDaneNowegoUzytkownika() : Uzytkownik
++pobierzNowegoUzytkownika() : Integer
++czyIstniejeLogin() : Bool
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>220</y>
+      <w>540</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>PlikZUzytkownikami
+--
+-MetodyPomocnicze : metodyPomocnicze
+-nazwaPlikuZUzytkownikami : String
+-nazwaPlikuZAdresatami : String
+--
++idOstatniegoAdresata : Integer
++PlikZUzytkownikami()
++dopiszUzytkownikaDoPliku() : void
++ustawIdOstatniegoAdresata() : void
++pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami() : Integer
++wczytajUzytkownikowZPliku() : vector&lt;Uzytkownik&gt;
++wczytajAdresatowZPliku() : vector&lt;Adresat&gt;
++pobierzDaneAdresata() : Adresat
++pobierzIdAdresataZDanychOddzielonychPionowymiKreskami() : Integer
++podajDaneNowegoAdresata() : Adresat
++dopiszAdresataDoPliku() : void
++zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami() : String
++zapiszWszystkichUzytkownikowDoPliku() : void
++czyPlikJestPusty() : Bool
++zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami() : String
++pobierzDaneUzytkownika() : Uzytkownik</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>580</x>
+      <y>20</y>
+      <w>320</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>MetodyPomocnicze
+--
++konwersjaIntNaString() : String
++wczytajLinie() : String
++wczytajZnak() : Char
++pobierzLiczbe() : String
++konwersjaStringNaInt() : Integer
++zamienPierwszaLitereNaDuzaAPozostaleNaMale() : String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>560</y>
+      <w>230</w>
+      <h>340</h>
+    </coordinates>
+    <panel_attributes>Adresat
+--
+-id : Integer
+-idUzytkownika: Integer
+-imie : String
+-nazwisko : String
+-nrTelefonu : String
+--
++ustawId() : void
++ustawIdUzytkownika() : void
++ustawImie(): void
++ustawNazwisko(): void
++ustawNumerTelefonu(): void
++ustawEmail(): void
++ustawAdres(): void
++pobierzId() : Integer
++pobierzIdUzytkownika() : Integer
++pobierzImie() : String
++pobierzNazwisko() : String
++pobierzNumerTelefonu() : String
++pobierzEmail() : String
++pobierzAdres() : String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
