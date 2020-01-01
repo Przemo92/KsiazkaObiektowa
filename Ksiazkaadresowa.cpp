@@ -14,3 +14,7 @@ void KsiazkaAdresowa::wypiszWszystkichUzytkownikow()
 {
     uzytkownikMeneger.wypiszWszystkichUzytkownikow();
 }
+void KsiazkaAdresowa::pokazMenu()
+{
+    uzytkownikMeneger.pokazMenu();
+}

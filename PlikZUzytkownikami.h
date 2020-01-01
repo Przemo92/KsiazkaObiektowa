@@ -16,28 +16,29 @@ class PlikZUzytkownikami
 {
     MetodyPomocnicze metodyPomocnicze;
 
-    const string nazwaPlikuZUzytkownikami;
-    string nazwaPlikuZAdresatami = "Adresaci.txt";
-
-
-public:
+    const string NAZWA_PLIKU_Z_UZYTKOWNIKAMI;
+    const string NAZWA_PLIKU_Z_ADRESATAMI;
     int idOstatniegoAdresata;
 
-    PlikZUzytkownikami(string NAZWAPLIKUZUZYTKOWNIKAMI) : nazwaPlikuZUzytkownikami(NAZWAPLIKUZUZYTKOWNIKAMI){};
-    void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
-    void ustawIdOstatniegoAdresata(int nowyIdOstatniegoAdresata);
-
-    int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-    vector <Uzytkownik> wczytajUzytkownikowZPliku();
-    vector <Adresat> wczytajAdresatowZPliku(int idZalogowanegoUzytkownika);
-    Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
-    int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
-    Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
-    void dopiszAdresataDoPliku(Adresat adresat);
-    string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
-    void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);
-    bool czyPlikJestPusty();
+    bool czyPlikJestPusty(fstream &plikTekstowy);
     string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
     Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
+    string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
+    int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
+    Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
+    int pobierzIdUzytkownikaZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
+
+public:
+    PlikZUzytkownikami(string nazwaPlikuZUzytkownikami, string NAZWA_PLIKU_Z_ADRESATAMI)
+        : NAZWA_PLIKU_Z_UZYTKOWNIKAMI(nazwaPlikuZUzytkownikami), NAZWA_PLIKU_Z_ADRESATAMI(NAZWA_PLIKU_Z_ADRESATAMI){};
+    void dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik);
+    void ustawIdOstatniegoAdresata(int nowyIdOstatniegoAdresata);
+    int pobierzIdOstatniegoAdresata();
+
+    vector <Uzytkownik> wczytajUzytkownikowZPliku();
+    vector <Adresat> wczytajAdresatowZPliku(int idZalogowanegoUzytkownika);
+    void dopiszAdresataDoPliku(Adresat adresat);
+    void zapiszWszystkichUzytkownikowDoPliku(vector <Uzytkownik> &uzytkownicy);
+
 };
 #endif

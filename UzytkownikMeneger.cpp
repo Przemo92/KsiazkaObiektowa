@@ -64,10 +64,6 @@ void UzytkownikMeneger::wypiszWszystkichUzytkownikow()
         cout << uzytkownicy[i].pobierzHaslo() << endl;
     }
 }
-void UzytkownikMeneger::wczytajUzytkownikowZPliku()
-{
-    uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-}
 void UzytkownikMeneger::logowanieUzytkownika()
 {
     Uzytkownik uzytkownik;
@@ -91,15 +87,13 @@ void UzytkownikMeneger::logowanieUzytkownika()
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
                     itr -> pobierzId();
-                    ustawIdZalogowanego(itr -> pobierzId());
-                    wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-                    while (wybor != '8')
+                    idZalogowanegoUzytkownika = itr -> pobierzId();
+                    //wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
+                    /*while (wybor != '8')
                     {
                         wybierzOpcjeZMenuUzytkownika();
                         wykonajOpcjeZMenuUzytkownika (wybor);
-                    }
-                    cout << "Wylogowano" << endl;
-                    system("pause");
+                    }*/
                     return;
                 }
             }
@@ -112,14 +106,8 @@ void UzytkownikMeneger::logowanieUzytkownika()
     cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
     system("pause");
 }
-void UzytkownikMeneger::ustawIdZalogowanego(int noweId)
-{
-    if (noweId >= 0)
-        idZalogowanegoUzytkownika = noweId;
-}
 void UzytkownikMeneger::wybierzOpcjeZMenuUzytkownika()
 {
-    char wybor;
 
     system("cls");
     cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
@@ -136,48 +124,7 @@ void UzytkownikMeneger::wybierzOpcjeZMenuUzytkownika()
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     wybor = metodyPomocnicze.wczytajZnak();
-    ustawNowyWybor(wybor);
     return;
-}
-void UzytkownikMeneger::ustawNowyWybor(char nowyWybor)
-{
-    wybor = nowyWybor;
-}
-void UzytkownikMeneger::wykonajOpcjeZMenuUzytkownika (char wybor)
-{
-
-    switch (wybor)
-    {
-    case '1':
-        plikZUzytkownikami.ustawIdOstatniegoAdresata(dodajAdresata(adresaci, idZalogowanegoUzytkownika, plikZUzytkownikami.idOstatniegoAdresata));
-        break;
-    case '2':
-        //wyszukajAdresatowPoImieniu(adresaci);
-        break;
-    case '3':
-        //wyszukajAdresatowPoNazwisku(adresaci);
-        break;
-    case '4':
-        wyswietlWszystkichAdresatow(adresaci);
-        break;
-    case '5':
-        //idUsunietegoAdresata = usunAdresata(adresaci);
-        //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
-        break;
-    case '6':
-        //edytujAdresata(adresaci);
-        break;
-    case '7':
-        zmianaHaslaZalogowanegoUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
-        break;
-    case '8':
-    {
-        idZalogowanegoUzytkownika = 0;
-        adresaci.clear();
-
-        return;
-    }
-    }
 }
 void UzytkownikMeneger::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
 {
@@ -187,7 +134,7 @@ int UzytkownikMeneger::pobierzIdZalogowanego()
 {
     return idZalogowanegoUzytkownika;
 }
-int UzytkownikMeneger::dodajAdresata(vector <Adresat> adresaci, int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
+void UzytkownikMeneger::dodajAdresata(vector <Adresat> adresaci, int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
 {
     Adresat adresat;
 
@@ -198,7 +145,8 @@ int UzytkownikMeneger::dodajAdresata(vector <Adresat> adresaci, int idZalogowane
     adresaci.push_back(adresat);
     plikZUzytkownikami.dopiszAdresataDoPliku(adresat);
 
-    return ++idOstatniegoAdresata;
+    plikZUzytkownikami.ustawIdOstatniegoAdresata(++idOstatniegoAdresata);
+    //return plikZUzytkownikami.pobierzIdOstatniegoAdresata();
 }
 Adresat UzytkownikMeneger::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
 {
@@ -270,4 +218,94 @@ void UzytkownikMeneger::zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> u
         }
     }
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
+}
+void UzytkownikMeneger::pokazMenu()
+{
+      while (true)
+    {
+        if (czyUzytkownikJestZalogowany())
+        {
+            uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+            wybierzOpcjeZMenuGlownego();
+
+            switch (wybor)
+            {
+            case '1':
+                rejestracjaUzytkownika();
+                break;
+            case '2':
+                logowanieUzytkownika();
+                break;
+            case '9':
+                exit(0);
+                break;
+            default:
+                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
+                system("pause");
+                break;
+            }
+        }
+        else
+        {
+
+            //if (adresaci.empty() == true)
+                // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
+                // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
+                // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
+               // idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
+            wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
+            wybierzOpcjeZMenuUzytkownika();
+
+            switch (wybor)
+            {
+            case '1':
+                dodajAdresata(adresaci, idZalogowanegoUzytkownika, plikZUzytkownikami.pobierzIdOstatniegoAdresata());
+                break;
+            case '2':
+                //wyszukajAdresatowPoImieniu(adresaci);
+                break;
+            case '3':
+               // wyszukajAdresatowPoNazwisku(adresaci);
+                break;
+            case '4':
+                wyswietlWszystkichAdresatow(adresaci);
+                break;
+            case '5':
+                //idUsunietegoAdresata = usunAdresata(adresaci);
+                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
+                break;
+            case '6':
+                //edytujAdresata(adresaci);
+                break;
+            case '7':
+                zmianaHaslaZalogowanegoUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
+                break;
+            case '8':
+                idZalogowanegoUzytkownika = 0;
+                adresaci.clear();
+                cout << endl << "WYLOGOWANO" << endl;
+                system("pause");
+                break;
+            }
+        }
+    }
+}
+void UzytkownikMeneger::wybierzOpcjeZMenuGlownego()
+{
+    system("cls");
+    cout << "    >>> MENU  GLOWNE <<<" << endl;
+    cout << "---------------------------" << endl;
+    cout << "1. Rejestracja" << endl;
+    cout << "2. Logowanie" << endl;
+    cout << "9. Koniec programu" << endl;
+    cout << "---------------------------" << endl;
+    cout << "Twoj wybor: ";
+    wybor = metodyPomocnicze.wczytajZnak();
+}
+bool UzytkownikMeneger::czyUzytkownikJestZalogowany()
+{
+    if (idZalogowanegoUzytkownika == 0)
+        return true;
+    else
+        return false;
 }
