@@ -9,6 +9,6 @@ int main()
     ksiazkaAdresowa.wypiszWszystkichUzytkownikow();
     //ksiazkaAdresowa.rejestracjaUzytkownika();
     //ksiazkaAdresowa.logowanieUzytkownika();
-    ksiazkaAdresowa.pokazMenu();
+    ksiazkaAdresowa.menuGlowne();
     return 0;
 }

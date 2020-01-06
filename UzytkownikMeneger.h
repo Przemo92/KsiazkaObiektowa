@@ -7,45 +7,36 @@
 #include <sstream>
 
 #include "Uzytkownik.h"
-#include "Adresat.h"
 #include "PlikZUzytkownikami.h"
 #include "MetodyPomocnicze.h"
 using namespace std;
 
 class UzytkownikMeneger
 {
+    vector <Uzytkownik> uzytkownicy;
+    int idZalogowanegoUzytkownika;
+
     MetodyPomocnicze metodyPomocnicze;
     PlikZUzytkownikami plikZUzytkownikami;
 
-    int idZalogowanegoUzytkownika;
+    Uzytkownik podajDaneNowegoUzytkownika();
+    int pobierzIdNowegoUzytkownika();
+    bool czyIstniejeLogin(string login);
     char wybor;
 
-    vector <Uzytkownik> uzytkownicy;
-    vector <Adresat> adresaci;
-
-    bool czyIstniejeLogin(string login);
-    int pobierzIdNowegoUzytkownika();
-    Uzytkownik podajDaneNowegoUzytkownika();
-    void zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> uzytkownicy, int idZalogowanegoUzytkownika);
-    void wybierzOpcjeZMenuUzytkownika();
-    void wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika);
-    void dodajAdresata(vector <Adresat> adresaci, int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
-    Adresat podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata);
-    void wyswietlWszystkichAdresatow(vector <Adresat> adresaci);
-    void wyswietlDaneAdresata(Adresat adresat);
-    void wybierzOpcjeZMenuGlownego();
-    bool czyUzytkownikJestZalogowany();
 
   public:
-      UzytkownikMeneger(string NAZWA_PLIKU_Z_UZYTKOWNIKAMI, string NAZWA_PLIKU_Z_ADRESATAMI)
-        :plikZUzytkownikami(NAZWA_PLIKU_Z_UZYTKOWNIKAMI, NAZWA_PLIKU_Z_ADRESATAMI){
-      uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+      UzytkownikMeneger(string nazwaPlikuZUzytkownikami) :plikZUzytkownikami(nazwaPlikuZUzytkownikami)
+      {
       idZalogowanegoUzytkownika = 0;
+      uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
       };
       void rejestracjaUzytkownika();
       void logowanieUzytkownika();
       void wypiszWszystkichUzytkownikow();//to jest niepotrzebne
-      int pobierzIdZalogowanego();
-      void pokazMenu();
+    int pobierzIdZalogowanegoUzytkownika();
+      bool czyUzytkownikJestZalogowany();
+      void wylogowanieUzytkownika();
+      void zmianaHaslaZalogowanegoUzytkownika();
 };
 #endif

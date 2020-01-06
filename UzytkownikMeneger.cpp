@@ -1,7 +1,5 @@
 #include "UzytkownikMeneger.h"
 
-using namespace std;
-
 
 void UzytkownikMeneger::rejestracjaUzytkownika()
 {
@@ -84,16 +82,10 @@ void UzytkownikMeneger::logowanieUzytkownika()
 
                 if (itr -> pobierzHaslo() == haslo)
                 {
+                    //itr -> pobierzId();
+                    idZalogowanegoUzytkownika = itr -> pobierzId();
                     cout << endl << "Zalogowales sie." << endl << endl;
                     system("pause");
-                    itr -> pobierzId();
-                    idZalogowanegoUzytkownika = itr -> pobierzId();
-                    //wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-                    /*while (wybor != '8')
-                    {
-                        wybierzOpcjeZMenuUzytkownika();
-                        wykonajOpcjeZMenuUzytkownika (wybor);
-                    }*/
                     return;
                 }
             }
@@ -106,104 +98,15 @@ void UzytkownikMeneger::logowanieUzytkownika()
     cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
     system("pause");
 }
-void UzytkownikMeneger::wybierzOpcjeZMenuUzytkownika()
-{
-
-    system("cls");
-    cout << " >>> MENU UZYTKOWNIKA <<<" << endl;
-    cout << "---------------------------" << endl;
-    cout << "1. Dodaj adresata" << endl;
-    cout << "2. Wyszukaj po imieniu" << endl;
-    cout << "3. Wyszukaj po nazwisku" << endl;
-    cout << "4. Wyswietl adresatow" << endl;
-    cout << "5. Usun adresata" << endl;
-    cout << "6. Edytuj adresata" << endl;
-    cout << "---------------------------" << endl;
-    cout << "7. Zmien haslo" << endl;
-    cout << "8. Wyloguj sie" << endl;
-    cout << "---------------------------" << endl;
-    cout << "Twoj wybor: ";
-    wybor = metodyPomocnicze.wczytajZnak();
-    return;
-}
-void UzytkownikMeneger::wczytajAdresatowZalogowanegoUzytkownikaZPliku(int idZalogowanegoUzytkownika)
-{
-    adresaci = plikZUzytkownikami.wczytajAdresatowZPliku(idZalogowanegoUzytkownika);
-}
-int UzytkownikMeneger::pobierzIdZalogowanego()
+int UzytkownikMeneger::pobierzIdZalogowanegoUzytkownika()
 {
     return idZalogowanegoUzytkownika;
 }
-void UzytkownikMeneger::dodajAdresata(vector <Adresat> adresaci, int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
+
+void UzytkownikMeneger::zmianaHaslaZalogowanegoUzytkownika()
 {
-    Adresat adresat;
-
-    system("cls");
-    cout << " >>> DODAWANIE NOWEGO ADRESATA <<<" << endl << endl;
-    adresat = podajDaneNowegoAdresata(idZalogowanegoUzytkownika, idOstatniegoAdresata);
-
-    adresaci.push_back(adresat);
-    plikZUzytkownikami.dopiszAdresataDoPliku(adresat);
-
-    plikZUzytkownikami.ustawIdOstatniegoAdresata(++idOstatniegoAdresata);
-    //return plikZUzytkownikami.pobierzIdOstatniegoAdresata();
-}
-Adresat UzytkownikMeneger::podajDaneNowegoAdresata(int idZalogowanegoUzytkownika, int idOstatniegoAdresata)
-{
-    Adresat adresat;
-
-    adresat.ustawId (++idOstatniegoAdresata);
-    adresat.ustawIdUzytkownika(idZalogowanegoUzytkownika);
-
-    cout << "Podaj imie: ";
-    adresat.ustawImie(metodyPomocnicze.wczytajLinie());
-    adresat.ustawImie(metodyPomocnicze.zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresat.pobierzImie()));
-
-    cout << "Podaj nazwisko: ";
-    adresat.ustawNazwisko(metodyPomocnicze.wczytajLinie());
-    adresat.ustawNazwisko(metodyPomocnicze.zamienPierwszaLitereNaDuzaAPozostaleNaMale(adresat.pobierzNazwisko()));
-
-    cout << "Podaj numer telefonu: ";
-    adresat.ustawNumerTelefonu(metodyPomocnicze.wczytajLinie());
-
-    cout << "Podaj email: ";
-    adresat.ustawEmail(metodyPomocnicze.wczytajLinie());
-
-    cout << "Podaj adres: ";
-    adresat.ustawAdres(metodyPomocnicze.wczytajLinie());
-
-    return adresat;
-}
-void UzytkownikMeneger::wyswietlWszystkichAdresatow(vector <Adresat> adresaci)
-{
-    system("cls");
-    if (!adresaci.empty())
+    if (idZalogowanegoUzytkownika > 0)
     {
-        cout << "             >>> ADRESACI <<<" << endl;
-        cout << "-----------------------------------------------" << endl;
-        for (vector <Adresat> :: iterator itr = adresaci.begin(); itr != adresaci.end(); itr++)
-        {
-            wyswietlDaneAdresata(*itr);
-        }
-        cout << endl;
-    }
-    else
-    {
-        cout << endl << "Ksiazka adresowa jest pusta." << endl << endl;
-    }
-    system("pause");
-}
-void UzytkownikMeneger::wyswietlDaneAdresata(Adresat adresat)
-{
-    cout << endl << "Id:                 " << adresat.pobierzId() << endl;
-    cout << "Imie:               " << adresat.pobierzImie() << endl;
-    cout << "Nazwisko:           " << adresat.pobierzNazwisko() << endl;
-    cout << "Numer telefonu:     " << adresat.pobierzNumerTelefonu() << endl;
-    cout << "Email:              " << adresat.pobierzEmail() << endl;
-    cout << "Adres:              " << adresat.pobierzAdres() << endl;
-}
-void UzytkownikMeneger::zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> uzytkownicy, int idZalogowanegoUzytkownika)
-{
     string noweHaslo = "";
     cout << "Podaj nowe haslo: ";
     noweHaslo = metodyPomocnicze.wczytajLinie();
@@ -218,94 +121,21 @@ void UzytkownikMeneger::zmianaHaslaZalogowanegoUzytkownika(vector <Uzytkownik> u
         }
     }
     plikZUzytkownikami.zapiszWszystkichUzytkownikowDoPliku(uzytkownicy);
-}
-void UzytkownikMeneger::pokazMenu()
-{
-      while (true)
-    {
-        if (czyUzytkownikJestZalogowany())
-        {
-            uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-            wybierzOpcjeZMenuGlownego();
-
-            switch (wybor)
-            {
-            case '1':
-                rejestracjaUzytkownika();
-                break;
-            case '2':
-                logowanieUzytkownika();
-                break;
-            case '9':
-                exit(0);
-                break;
-            default:
-                cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
-                system("pause");
-                break;
-            }
-        }
-        else
-        {
-
-            //if (adresaci.empty() == true)
-                // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
-                // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
-                // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
-               // idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-            wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);
-            wybierzOpcjeZMenuUzytkownika();
-
-            switch (wybor)
-            {
-            case '1':
-                dodajAdresata(adresaci, idZalogowanegoUzytkownika, plikZUzytkownikami.pobierzIdOstatniegoAdresata());
-                break;
-            case '2':
-                //wyszukajAdresatowPoImieniu(adresaci);
-                break;
-            case '3':
-               // wyszukajAdresatowPoNazwisku(adresaci);
-                break;
-            case '4':
-                wyswietlWszystkichAdresatow(adresaci);
-                break;
-            case '5':
-                //idUsunietegoAdresata = usunAdresata(adresaci);
-                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
-                break;
-            case '6':
-                //edytujAdresata(adresaci);
-                break;
-            case '7':
-                zmianaHaslaZalogowanegoUzytkownika(uzytkownicy, idZalogowanegoUzytkownika);
-                break;
-            case '8':
-                idZalogowanegoUzytkownika = 0;
-                adresaci.clear();
-                cout << endl << "WYLOGOWANO" << endl;
-                system("pause");
-                break;
-            }
-        }
     }
-}
-void UzytkownikMeneger::wybierzOpcjeZMenuGlownego()
-{
-    system("cls");
-    cout << "    >>> MENU  GLOWNE <<<" << endl;
-    cout << "---------------------------" << endl;
-    cout << "1. Rejestracja" << endl;
-    cout << "2. Logowanie" << endl;
-    cout << "9. Koniec programu" << endl;
-    cout << "---------------------------" << endl;
-    cout << "Twoj wybor: ";
-    wybor = metodyPomocnicze.wczytajZnak();
+    else
+    {
+      cout << "Aby zmienic haslo, nalezy najpierw sie zalogowac" << endl;
+      system("pause");
+    }
 }
 bool UzytkownikMeneger::czyUzytkownikJestZalogowany()
 {
-    if (idZalogowanegoUzytkownika == 0)
+    if (idZalogowanegoUzytkownika > 0)
         return true;
     else
         return false;
+}
+void UzytkownikMeneger::wylogowanieUzytkownika()
+{
+    idZalogowanegoUzytkownika = 0;
 }
