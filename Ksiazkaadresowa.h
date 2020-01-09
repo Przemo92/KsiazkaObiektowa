@@ -35,6 +35,8 @@ public:
     void menuGlowne();
     void wybierzOpcjeZMenuGlownego();
     void wybierzOpcjeZMenuUzytkownika();
+    void usunAdresata();
+    void edytujAdresata();
 
 };
 #endif

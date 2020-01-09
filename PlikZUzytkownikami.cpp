@@ -1,7 +1,5 @@
 #include "PlikZUzytkownikami.h"
 
-using namespace std;
-
 void PlikZUzytkownikami::dopiszUzytkownikaDoPliku(Uzytkownik uzytkownik)
 {
     string liniaZDanymiUzytkownika = "";

@@ -16,5 +16,6 @@ class MetodyPomocnicze
     string pobierzLiczbe(string tekst, int pozycjaZnaku);
     int konwersjaStringNaInt(string liczba);
     string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+    int wczytajLiczbeCalkowita();
 };
 #endif

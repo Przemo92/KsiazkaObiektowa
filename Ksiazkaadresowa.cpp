@@ -75,13 +75,6 @@ void KsiazkaAdresowa::menuGlowne()
         }
         else
         {
-
-            //if (adresaci.empty() == true)
-                // Pobieramy idOstatniegoAdresata, po to aby zoptymalizowac program.
-                // Dzieki temu, kiedy uztykwonik bedzie dodawal nowego adresata
-                // to nie bedziemy musieli jeszcze raz ustalac idOstatniegoAdresata
-               // idOstatniegoAdresata = wczytajAdresatowZalogowanegoUzytkownikaZPliku(adresaci, idZalogowanegoUzytkownika);
-            //wczytajAdresatowZalogowanegoUzytkownikaZPliku(idZalogowanegoUzytkownika);!!!!!!!!!!!!!!!!
             wybierzOpcjeZMenuUzytkownika();
 
             switch (wybor)
@@ -99,11 +92,10 @@ void KsiazkaAdresowa::menuGlowne()
                 wyswietlWszystkichAdresatow();
                 break;
             case '5':
-                //idUsunietegoAdresata = usunAdresata(adresaci);
-                //idOstatniegoAdresata = podajIdOstatniegoAdresataPoUsunieciuWybranegoAdresata(idUsunietegoAdresata, idOstatniegoAdresata);
+                 usunAdresata();
                 break;
             case '6':
-                //edytujAdresata(adresaci);
+                edytujAdresata();
                 break;
             case '7':
                 zmianaHaslaZalogowanegoUzytkownika();
@@ -148,4 +140,12 @@ void KsiazkaAdresowa::wybierzOpcjeZMenuUzytkownika()
     cout << "Twoj wybor: ";
     wybor = metodyPomocnicze.wczytajZnak();
     return;
+}
+void KsiazkaAdresowa::usunAdresata()
+{
+    adresatMeneger -> usunAdresata();
+}
+void KsiazkaAdresowa::edytujAdresata()
+{
+    adresatMeneger -> edytujAdresata();
 }
