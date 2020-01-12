@@ -9,18 +9,18 @@
 
 #include "Adresat.h"
 #include "MetodyPomocnicze.h"
-
+#include "PlikTekstowy.h"
 
 using namespace std;
 
-class PlikZAdresatami
+class PlikZAdresatami : public PlikTekstowy
 {
     const string NAZWA_PLIKU_Z_ADRESATAMI;
     int idOstatniegoAdresata;
     string nazwaTymczasowegoPlikuZAdresatami = "Adresaci_tymczasowo.txt";
     MetodyPomocnicze metodyPomocnicze;
 
-    bool czyPlikJestPusty(fstream &plikTekstowy);
+    //bool czyPlikJestPusty(fstream &plikTekstowy);
     string zamienDaneAdresataNaLinieZDanymiOddzielonymiPionowymiKreskami(Adresat adresat);
     Adresat pobierzDaneAdresata(string daneAdresataOddzielonePionowymiKreskami);
     int pobierzIdAdresataZDanychOddzielonychPionowymiKreskami(string daneJednegoAdresataOddzielonePionowymiKreskami);
