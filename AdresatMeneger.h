@@ -24,6 +24,7 @@ class AdresatMeneger
     void wyswietlDaneAdresata(Adresat adresat);
     int podajIdWybranegoAdresata();
     char wybierzOpcjeZMenuEdycja();
+    void zaktualizujDaneWybranegoAdresata(Adresat adresat);
 
 public:
     AdresatMeneger (string nazwaPlikuZAdresatami, int idZalogowanegoUzytkownika)
@@ -35,6 +36,6 @@ public:
       void wyswietlWszystkichAdresatow();
       void usunAdresata();
       void edytujAdresata();
-      void zaktualizujDaneWybranegoAdresata(Adresat adresat);
+      //void zaktualizujDaneWybranegoAdresata(Adresat adresat);
 };
 #endif

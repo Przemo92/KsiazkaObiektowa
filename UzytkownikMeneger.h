@@ -22,21 +22,20 @@ class UzytkownikMeneger
     Uzytkownik podajDaneNowegoUzytkownika();
     int pobierzIdNowegoUzytkownika();
     bool czyIstniejeLogin(string login);
-    char wybor;
 
 
-  public:
-      UzytkownikMeneger(string nazwaPlikuZUzytkownikami) :plikZUzytkownikami(nazwaPlikuZUzytkownikami)
-      {
-      idZalogowanegoUzytkownika = 0;
-      uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
-      };
-      void rejestracjaUzytkownika();
-      void logowanieUzytkownika();
-      void wypiszWszystkichUzytkownikow();//to jest niepotrzebne
+public:
+    UzytkownikMeneger(string nazwaPlikuZUzytkownikami) :plikZUzytkownikami(nazwaPlikuZUzytkownikami)
+    {
+        idZalogowanegoUzytkownika = 0;
+        uzytkownicy = plikZUzytkownikami.wczytajUzytkownikowZPliku();
+    };
+    void rejestracjaUzytkownika();
+    void logowanieUzytkownika();
+    void wypiszWszystkichUzytkownikow();//to jest niepotrzebne
     int pobierzIdZalogowanegoUzytkownika();
-      bool czyUzytkownikJestZalogowany();
-      void wylogowanieUzytkownika();
-      void zmianaHaslaZalogowanegoUzytkownika();
+    bool czyUzytkownikJestZalogowany();
+    void wylogowanieUzytkownika();
+    void zmianaHaslaZalogowanegoUzytkownika();
 };
 #endif

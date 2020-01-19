@@ -13,6 +13,8 @@ AdresatMeneger *adresatMeneger;
 MetodyPomocnicze metodyPomocnicze;
 const string NAZWA_PLIKU_Z_ADRESATAMI;
 char wybor;
+void wybierzOpcjeZMenuGlownego();
+void wybierzOpcjeZMenuUzytkownika();
 
 public:
     KsiazkaAdresowa (string nazwaPlikuZUzytkownikami, string nazwaPlikuZAdresatami)
@@ -30,11 +32,9 @@ public:
     void logowanieUzytkownika();
     void wylogowanieUzytkownika();
     void dodajAdresata();
+    void menuGlowne();
     void wyswietlWszystkichAdresatow();
     void zmianaHaslaZalogowanegoUzytkownika();
-    void menuGlowne();
-    void wybierzOpcjeZMenuGlownego();
-    void wybierzOpcjeZMenuUzytkownika();
     void usunAdresata();
     void edytujAdresata();
 
