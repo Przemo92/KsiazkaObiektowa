@@ -19,7 +19,6 @@ class PlikZUzytkownikami: public PlikTekstowy
 
     const string NAZWA_PLIKU_Z_UZYTKOWNIKAMI;
 
-    //bool czyPlikJestPusty(fstream &plikTekstowy);
     string zamienDaneUzytkownikaNaLinieZDanymiOddzielonaPionowymiKreskami(Uzytkownik uzytkownik);
     Uzytkownik pobierzDaneUzytkownika(string daneJednegoUzytkownikaOddzielonePionowymiKreskami);
 
